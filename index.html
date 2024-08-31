@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Micro Battle</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jersey+10&family=Jersey+20+Charted&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #000000;
+      color: rgb(255, 255, 255); /* Default text color to white for readability */
+      font-family: 'Jersey 10', sans-serif;
+      font-size: 2rem;
+      font-weight: 400;
+      font-style: normal;
+    }
+    .form-control{
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: #f06595;
+    }
+    .img-custom {
+      width: 200px;  /* Set your desired width */
+      height: 100px; /* Set your desired height */
+    }
+    #battle-section .row {
+      display: flex;
+      align-items: center;
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #ffffff;
+    }
+    #player-stats, #enemy-stats {
+      max-height: 250px;
+      overflow-y: auto;
+    }
+    #player-stats p, #enemy-stats p {
+      margin-bottom: 0.1rem; /* Reduce space between paragraphs */
+    }
+    /* Apply gradient to all buttons */
+    .btn {
+      background: linear-gradient(90deg, #ff6b6b, #f06595, #c084fc, #fb6aef);
+      border: none; /* Remove default border */
+      color: white; /* Ensure the text is visible */
+      font-size: 2rem;
+    }
+    .btn:hover {
+      background: linear-gradient(90deg, #1b1b1d, #443651, #3c1523, #3b1818); /* Reverse the gradient on hover */
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="bg-dark text-white text-center py-">
+  <h1>Ultra Gerburt Battle Delux</h1>
+</header>
+
+<div class="container my-4">
+  <!-- Stat Allocation Section -->
+  <div id="stat-allocation" class="mb-4">
+    <h5>Allocate Your Stats (60 points to spend)</h5>
+    <p>Points left: <span id="points-left">60</span></p>
+    <div class="row mb-2">
+      <div class="col-md-2">
+        <label for="vitality">Vitality</label>
+        <input type="number" id="vitality" class="form-control stat-input" min="1" max="10" value="1">
+      </div>
+      <div class="col-md-2">
+        <label for="melee">Melee</label>
+        <input type="number" id="melee" class="form-control stat-input" min="1" max="10" value="1">
+      </div>
+      <div class="col-md-2">
+        <label for="defense">Defense</label>
+        <input type="number" id="defense" class="form-control stat-input" min="1" max="10" value="1">
+      </div>
+      <div class="col-md-2">
+        <label for="intellect">Intellect</label>
+        <input type="number" id="intellect" class="form-control stat-input" min="1" max="10" value="1">
+      </div>
+      <div class="col-md-2">
+        <label for="wisdom">Wisdom</label>
+        <input type="number" id="wisdom" class="form-control stat-input mb-4" min="1" max="10" value="1">
+      </div>
+      <div class="col-md-2 d-flex align-items-end">
+        <button id="start-battle-btn" class="btn btn-primary btn-block mb-3">Start Battle</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Battle Section -->
+  <div id="battle-section" style="display: none;">
+    <!-- First Row: Image and Battle Log -->
+    <div class="row mb-4 mx-auto">
+      <div class="col-lg-8 col-md-6 col-12 text-center mb-3 mb-lg-0 mx-auto">
+        <div class="character-pictures">
+          <div class="npc-picture">
+            <img id="npc-image" class="img-custom" src="/assets/1stB9.png" alt="NPC">
+          </div>
+        </div>
+        <div id="battle-log" class="p-3 mt-3 mt-md-0" style="height: 100px; overflow: hidden;">
+          <p>Battle begins!</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Second Row: Player and Enemy Stats Side by Side -->
+    <div class="row">
+      <div class="col-6 mb-4">
+        <div id="player-stats" class="p-3" style="height: 250px; overflow: hidden;"  >
+          <h5>You</h5>
+          <p>HP: <span id="player-hp">100</span></p>
+          <p>MP: <span id="player-mp">50</span></p>
+          <p>Vitality: <span id="stat-vitality"></span></p>
+          <p>Melee: <span id="stat-melee"></span></p>
+          <p>Defense: <span id="stat-defense"></span></p>
+          <p>Intellect: <span id="stat-intellect"></span></p>
+          <p>Wisdom: <span id="stat-wisdom"></span></p>
+        </div>
+      </div>
+      <div class="col-6 mb-4">
+        <div id="enemy-stats" class="p-3" style="height: 250px; overflow: hidden;">
+          <h5><span id="enemy-name"></span></h5>
+          <p>HP: <span id="enemy-hp">100</span></p>
+          <p>MP: <span id="enemy-mp">50</span></p>
+          <p>Vitality: <span id="enemy-vitality"></span></p>
+          <p>Melee: <span id="enemy-melee"></span></p>
+          <p>Defense: <span id="enemy-defense"></span></p>
+          <p>Intellect: <span id="enemy-intellect"></span></p>
+          <p>Wisdom: <span id="enemy-wisdom"></span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Third Row: Action Buttons -->
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <button id="attack-btn" class="btn btn-danger btn-block mb-2">Attack</button>
+      </div>
+      <div class="col-sm-6">
+        <button id="defend-btn" class="btn btn-secondary btn-block mb-2">Defend</button>
+      </div>
+      <div class="col-sm-6">
+        <button id="blast-btn" class="btn btn-warning btn-block mb-2">Energy Blast</button>
+      </div>
+      <div class="col-sm-6">
+        <button id="heal-btn" class="btn btn-success btn-block mb-2">Heal</button>
+      </div>
+      <div class="col-sm-6">
+        <button id="wait-btn" class="btn btn-info btn-block mb-2">Wait</button>
+      </div>
+      <div class="col-sm-6">
+        <button id="flee-btn" class="btn btn-dark btn-block mb-2">Flee</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
