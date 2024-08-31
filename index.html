@@ -17,6 +17,9 @@
       font-weight: 400;
       font-style: normal;
     }
+    .app-display{
+      height: 100vh
+    }
     .form-control{
       font-size: 1.5rem;
       font-weight: 400;
@@ -52,37 +55,37 @@
     }
   </style>
 </head>
-<body>
-
+<body class>
+<div class="container-fluid app-display">
 <!-- Header -->
 <header class="bg-dark text-white text-center py-">
-  <h1>Ultra Gerburt Battle Delux</h1>
+  <h1>Ultra Gerburt Battle Deluxe</h1>
 </header>
 
-<div class="container my-4">
+<div class=" my-4">
   <!-- Stat Allocation Section -->
   <div id="stat-allocation" class="mb-4">
-    <h5>Allocate Your Stats (60 points to spend)</h5>
-    <p>Points left: <span id="points-left">60</span></p>
-    <div class="row mb-2">
+    <h5>Allocate Your Stats (35 points to spend)</h5>
+    <p>Points left: <span id="points-left">35</span></p>
+    <div class=" row mb-2">
       <div class="col-md-2">
-        <label for="vitality">Vitality</label>
+        <label for="vitality">Vitality 1-10</label>
         <input type="number" id="vitality" class="form-control stat-input" min="1" max="10" value="1">
       </div>
       <div class="col-md-2">
-        <label for="melee">Melee</label>
+        <label for="melee">Melee 1-10</label>
         <input type="number" id="melee" class="form-control stat-input" min="1" max="10" value="1">
       </div>
       <div class="col-md-2">
-        <label for="defense">Defense</label>
+        <label for="defense">Defense 1-10</label>
         <input type="number" id="defense" class="form-control stat-input" min="1" max="10" value="1">
       </div>
       <div class="col-md-2">
-        <label for="intellect">Intellect</label>
+        <label for="intellect">Intellect 1-10</label>
         <input type="number" id="intellect" class="form-control stat-input" min="1" max="10" value="1">
       </div>
       <div class="col-md-2">
-        <label for="wisdom">Wisdom</label>
+        <label for="wisdom">Wisdom 1-10</label>
         <input type="number" id="wisdom" class="form-control stat-input mb-4" min="1" max="10" value="1">
       </div>
       <div class="col-md-2 d-flex align-items-end">
@@ -137,22 +140,22 @@
 
     <!-- Third Row: Action Buttons -->
     <div class="row mb-2">
-      <div class="col-sm-6">
+      <div class="col-md-6 col-sm-2">
         <button id="attack-btn" class="btn btn-danger btn-block mb-2">Attack</button>
       </div>
-      <div class="col-sm-6">
+      <div class="col-md-6 col-sm-2">
         <button id="defend-btn" class="btn btn-secondary btn-block mb-2">Defend</button>
       </div>
-      <div class="col-sm-6">
-        <button id="blast-btn" class="btn btn-warning btn-block mb-2">Energy Blast</button>
+      <div class="col-md-6 col-sm-2">
+        <button id="blast-btn" class="btn btn-warning btn-block mb-2">Blast</button>
       </div>
-      <div class="col-sm-6">
+      <div class=" col-md-6 col-sm-2">
         <button id="heal-btn" class="btn btn-success btn-block mb-2">Heal</button>
       </div>
-      <div class="col-sm-6">
+      <div class=" col-md-6 col-sm-2">
         <button id="wait-btn" class="btn btn-info btn-block mb-2">Wait</button>
       </div>
-      <div class="col-sm-6">
+      <div class=" col-md-6 col-sm-2">
         <button id="flee-btn" class="btn btn-dark btn-block mb-2">Flee</button>
       </div>
     </div>
