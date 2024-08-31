@@ -144,9 +144,9 @@ function changeNpcImage(action) {
 
   // Map action to corresponding image
   let actionImageMap = {
-      'attack': '../assets/1stB13.png',
-      'wait': '../assets/1stB9.png',
-      'energyBlast': '../assets/1stB13.png'
+      'attack': '/assets/1stB13.png',
+      'wait': '/assets/1stB9.png',
+      'energyBlast': '/assets/1stB13.png'
   };
 
   // Change the NPC image based on action
