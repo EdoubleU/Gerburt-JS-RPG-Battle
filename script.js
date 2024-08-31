@@ -214,3 +214,4 @@ function disableButtons() {
 
 // Initialize the game with the selected enemy
 updateStats();
+
